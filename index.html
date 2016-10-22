@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Learning Vue JS</title>
+    <style>
+        .red-4 {
+            background-color: red;
+        }
+
+        .red-5 {
+            background-color: firebrick;
+        }
+    </style>
 </head>
 <body>
     <div id="myApp">
         <h1 v-html="output"></h1>
-        <div>{{ count + 1 }}</div>
+        <div v-bind:class="'red-' + count">{{ count + 1 }}</div>
         <div>{{ $data }}</div>
     </div>
 
