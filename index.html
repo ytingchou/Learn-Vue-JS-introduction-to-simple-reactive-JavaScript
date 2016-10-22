@@ -6,8 +6,16 @@
 </head>
 <body>
     <div id="myApp">
+        {{ output }}
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+        var myData = { output: 'Hello World' };
+        new Vue ({
+            el: '#myApp',
+            data: myData
+        });
+    </script>
 </body>
 </html>
