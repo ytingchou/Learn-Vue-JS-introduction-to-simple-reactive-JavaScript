@@ -6,16 +6,28 @@
 </head>
 <body>
     <div id="myApp">
-        {{ output }}
+        <h1>{{output}}</h1>
+        <div>{{err}}</div>
+        <div>{{ $data }}</div>
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script>
-        var myData = { output: 'Hello World' };
-        new Vue ({
+        var vm = new Vue({
             el: '#myApp',
-            data: myData
+            data: {
+                output: 'Hello World',
+                err: 'Wrong input'
+            },
+            created: function() {
+                console.log('Instance created ' + this.output);
+            },
+            mounted: function() {
+                console.log('Instance mounted ' + this.output);
+            }
         });
+
+        vm.output = "new content";
     </script>
 </body>
 </html>
