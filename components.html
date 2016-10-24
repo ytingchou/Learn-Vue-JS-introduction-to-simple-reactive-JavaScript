@@ -14,36 +14,46 @@
 </head>
 <body>
     <div id="myApp">
-        <hworld></hworld>
-        <hworld message="Another message1"></hworld>
-        <hworld></hworld>
-        <hworld message="Another message2"></hworld>
-        <hworld message="Another message3"></hworld>
-        <helloworld></helloworld>
-        <helloworld message="Another message"></helloworld>
-        <helloworld message="my new message"></helloworld>
+        <mycar make="make" model="model" message="message" count="0"></mycar>
+        <mycar :make="make" :model="model" :message="message" :count="count"></mycar>
+        <mycar :make="make" :model="model" :message="message" :count="count"></mycar>
         <pre>{{$data}}</pre>
     </div>
 
+    <template id="car-template">
+        <div>
+            <h1>{{make}}</h1>
+            <h4>{{model}}</h4>
+            <div> Hello World {{message}} </div>
+            <div>Count : {{carCount}}</div>
+            <button type="button" @click="addValue">Vote for me</button>
+        </div>
+    </template>
+
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script>
-        Vue.component('helloworld', {
-            template: '<div> Hello World {{message}} </div>',
-            props: ['message']
+        Vue.component('mycar', {
+            template: '#car-template',
+            props: ['make', 'model', 'message', 'count'],
+            methods: {
+                addValue: function(event) {
+                    this.carCount++;
+                }
+            },
+            data: function() {
+                return {
+                    carCount: this.count
+                }
+            }
         });
 
         var vm = new Vue({
             el: '#myApp',
             data: {
-                myVala: 0,
-                myValb: 0,
-                preview: false
-            },
-            components: {
-                'hworld': {
-                    template: '<div> Hello World {{message}} </div>',
-                    props: ['message']
-                }
+                make: 'Ford',
+                model: 'Mustang',
+                message: 'Buy this car',
+                count: 0
             }
         });
     </script>
