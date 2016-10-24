@@ -14,6 +14,23 @@
         img {
             display: block;
         }
+
+        #newdiv {
+            height: 200px;
+            width: 200px;
+            background-color: aqua;
+        }
+
+        .transition-enter-active, .trasition-leave-active {
+            transition: all .5s ease;
+            height: 20px;
+        }
+
+        .transition-enter, .transition-leave {
+            background-color: green;
+            height: 0px;
+            opacity: 0;
+        }
     </style>
 </head>
 <body>
@@ -25,6 +42,10 @@
         <div v-for="index in filteredItems">{{index.todo}}</div>
         <a @click="toggleData" class="btn">click me</a>
         <pre v-show="preview">{{$data}}</pre>
+
+        <transition name="transition">
+            <div v-if="preview" id="newdiv">some content</div>
+        </transition>
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
