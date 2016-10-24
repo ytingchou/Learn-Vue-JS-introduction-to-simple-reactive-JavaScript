@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learning Vue JS</title>
+    <style>
+        .btn {
+            display: block;
+            margin-top: 35px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="myApp">
+        <hworld></hworld>
+        <hworld></hworld>
+        <hworld></hworld>
+        <hworld></hworld>
+        <hworld></hworld>
+        <helloworld></helloworld>
+        <helloworld></helloworld>
+        <pre>{{$data}}</pre>
+    </div>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('helloworld', {
+            template: '<div> Hello World 2 </div>'
+        });
+
+        var vm = new Vue({
+            el: '#myApp',
+            data: {
+                myVala: 0,
+                myValb: 0,
+                preview: false
+            },
+            components: {
+                'hworld': {
+                    template: '<div> Hello World </div>'
+                }
+            }
+        });
+    </script>
+</body>
+</html>
