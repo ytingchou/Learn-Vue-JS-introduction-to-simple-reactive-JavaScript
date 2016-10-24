@@ -11,6 +11,15 @@
         .red-5 {
             background-color: firebrick;
         }
+
+        .btn {
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        div {
+            margin: 10px;
+        }
     </style>
 </head>
 <body>
@@ -19,11 +28,12 @@
         <div v-bind:class="'red-' + count">{{ count + 1 }}</div>
         <input v-model="searchme">
         <div>Searching for {{ searchme }}</div>
+        <a v-on:click="vjson" class="btn">click me</a>
         <ul>
             <li v-for="index in filteredItems">{{ index.todo }}</li>
         </ul>
 
-        <div>{{ $data }}</div>
+        <div class="red-4" v-show="!visjson">{{ $data }}</div>
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -33,6 +43,7 @@
             data: {
                 output: 'Hello World',
                 searchme: 'nothing yet',
+                visjson: true,
                 count: 4,
                 items: [
                     {todo: "write code"},
@@ -53,6 +64,14 @@
                     return this.items.filter(function(item) {
                         return item.todo.indexOf(searchme) > -1;
                     });
+                }
+            },
+            methods: {
+                vjson: function() {
+                    console.log("clicked");
+                    this.visjson = !this.visjson;
+                    this.output = " updated : " + this.count;
+                    this.count++;
                 }
             }
         });
