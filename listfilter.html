@@ -22,7 +22,7 @@
         }
 
         .transition-enter-active, .trasition-leave-active {
-            transition: all .5s ease;
+            transition: all 5s ease;
             height: 20px;
         }
 
@@ -30,6 +30,11 @@
             background-color: green;
             height: 0px;
             opacity: 0;
+        }
+
+        #hidenewdiv {
+            opacity: 1;
+            height: 0px;
         }
     </style>
 </head>
@@ -44,8 +49,10 @@
         <pre v-show="preview">{{$data}}</pre>
 
         <transition name="transition">
-            <div v-if="preview" id="newdiv">some content</div>
+            <div v-if="preview" id="newdiv" key="show">some content</div>
+            <div v-else key="hide" id="hidenewdiv">This will show if it is not true</div>
         </transition>
+
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
