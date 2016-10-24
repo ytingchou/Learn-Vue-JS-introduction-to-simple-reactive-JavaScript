@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>Learning Vue Js</title>
     <style>
-        div {
+        .btn {
+            display: block;
+            margin-top: 35px;
             padding: 10px;
             border: 1px solid black;
         }
@@ -16,8 +18,8 @@
         <input type="text" v-model="searchme">
 
        <div v-for="index in filteredItems">{{index.todo}}</div>
-
-        <pre>{{$data}}</pre>
+        <a v-on:click="toggleData" class="btn">click me</a>
+        <pre v-show="preview">{{$data}}</pre>
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -26,6 +28,7 @@
             el: '#myApp',
             data: {
                 searchme: "",
+                preview: false,
                 items: [
                     {todo: "create website"},
                     {todo: "upload content"},
@@ -38,6 +41,11 @@
                     return this.items.filter(function(item) {
                         return item.todo.indexOf(searchme) > -1;
                     });
+                }
+            },
+            methods: {
+                toggleData: function() {
+                    this.preview = !this.preview;
                 }
             }
         });
