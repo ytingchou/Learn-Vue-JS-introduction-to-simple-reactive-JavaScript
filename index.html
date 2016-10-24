@@ -15,8 +15,14 @@
 </head>
 <body>
     <div id="myApp">
-        <h1 v-html="output"></h1>
+        <h1 v-html="output.toUpperCase()"></h1>
         <div v-bind:class="'red-' + count">{{ count + 1 }}</div>
+        <input v-model="searchme">
+        <div>Searching for {{ searchme }}</div>
+        <ul>
+            <li v-for="index in filteredItems">{{ index.todo }}</li>
+        </ul>
+
         <div>{{ $data }}</div>
     </div>
 
@@ -26,8 +32,13 @@
             el: '#myApp',
             data: {
                 output: 'Hello World',
-                err: 'Wrong input',
-                count: 4
+                searchme: 'nothing yet',
+                count: 4,
+                items: [
+                    {todo: "write code"},
+                    {todo: "create website"},
+                    {todo: "load content"}
+                ]
             },
             created: function() {
                 console.log('Instance created ' + this.output);
@@ -35,6 +46,14 @@
             mounted: function() {
                 this.count++;
                 console.log('Instance mounted ' + this.output);
+            },
+            computed: {
+                filteredItems: function() {
+                    var searchme = this.searchme;
+                    return this.items.filter(function(item) {
+                        return item.todo.indexOf(searchme) > -1;
+                    });
+                }
             }
         });
 
