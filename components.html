@@ -15,19 +15,21 @@
 <body>
     <div id="myApp">
         <hworld></hworld>
+        <hworld message="Another message1"></hworld>
         <hworld></hworld>
-        <hworld></hworld>
-        <hworld></hworld>
-        <hworld></hworld>
+        <hworld message="Another message2"></hworld>
+        <hworld message="Another message3"></hworld>
         <helloworld></helloworld>
-        <helloworld></helloworld>
+        <helloworld message="Another message"></helloworld>
+        <helloworld message="my new message"></helloworld>
         <pre>{{$data}}</pre>
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script>
         Vue.component('helloworld', {
-            template: '<div> Hello World 2 </div>'
+            template: '<div> Hello World {{message}} </div>',
+            props: ['message']
         });
 
         var vm = new Vue({
@@ -39,7 +41,8 @@
             },
             components: {
                 'hworld': {
-                    template: '<div> Hello World </div>'
+                    template: '<div> Hello World {{message}} </div>',
+                    props: ['message']
                 }
             }
         });
