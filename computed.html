@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learning Vue JS</title>
+    <style>
+        .btn {
+            display: block;
+            margin-top: 35px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="myApp">
+        <input type="number" v-model="myVala"> x
+        <input type="number" v-model="myValb"> = {{myCal}}
+        <pre>{{$data}}</pre>
+    </div>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#myApp',
+            data: {
+                myVala: 0,
+                myValb: 0,
+                preview: false
+            },
+            computed: {
+                myCal: function() {
+                    return this.myVala * this.myValb;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
